@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Hero from './Hero';
 import Form from './Form';
+import Preview from './Preview';
 
 function App() {
   return (
@@ -15,14 +16,13 @@ function App() {
 
         <Hero />
 
+        <Preview />
+
         <Form />
-
-
 
       </main>
 
       <Footer />
-
 
     </div>
 
