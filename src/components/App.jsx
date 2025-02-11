@@ -1,10 +1,17 @@
 import '../styles/App.scss';
+import Header from './Header';
 
 function App() {
   return (
-    <div>
-      Escribe aquí tu HTML...
+
+    <div className="container">
+
+      <Header />
+
+
+
     </div>
+
   )
 }
 
