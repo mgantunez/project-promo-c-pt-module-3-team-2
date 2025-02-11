@@ -1,4 +1,4 @@
-import logoSponsor from './images/adalab.png';
+import logoSponsor from '../images/adalab.png';
 
 function Footer() {
 

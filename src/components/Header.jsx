@@ -1,5 +1,5 @@
-import companyLogo from './images/laptop-code-solid.svg';
-import logoSponsor from './images/adalab.png';
+import companyLogo from '../images/laptop-code-solid.svg';
+import logoSponsor from '../images/adalab.png';
 
 function Header() {
 
