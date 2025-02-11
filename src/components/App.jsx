@@ -2,6 +2,7 @@ import '../styles/App.scss';
 import Header from './Header';
 import Footer from './Footer';
 import Hero from './Hero';
+import Form from './Form';
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <main className="main">
 
         <Hero />
+
+        <Form />
 
 
 
