@@ -1,11 +1,10 @@
 import '../styles/App.scss';
-import { Route, Routes } from "react-router-dom";
 
 import Header from './Header';
 import Footer from './Footer';
-import Hero from './Hero';
-import Form from './Form';
-import Preview from './Preview';
+import Landing from './Pages/Landing';
+import CreatePage from './Pages/CreatePage'
+import { Route, Routes, Link } from "react-router";
 
 function App() {
   return (
@@ -16,11 +15,19 @@ function App() {
 
       <main className="main">
 
-        <Hero />
+      
 
-        <Preview />
-
-        <Form />
+        <Routes>
+          <Route index element={<Landing />}></Route>
+          <Route path='create' element={<CreatePage />}></Route>
+          <Route path="*" element={
+            <div className="detail"><p className="detail__title">Error 404 - Página no encontrada</p>
+              <Link to="/" className="detail__returnBtn">
+                Volver a la home
+              </Link>
+            </div>
+          }></Route>
+        </Routes>
 
       </main>
 
