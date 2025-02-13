@@ -1,0 +1,19 @@
+.landing{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+.titleh1{
+    font: var(--font-title-biggest);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .graphic{
+    width: 350px;
+    display: flex;
+    flex-direction: row;
+
+  }

@@ -6,13 +6,16 @@ import Form from "../Form";
 function CreatePage() {
 
     return (
-        <>
-            <Hero/>
 
-            <Preview/>
+        <main className="main">
+                <Hero/>
 
-            <Form/>
-        </>
+<Preview/>
+
+<Form/>
+
+        </main>
+
     )
 }
 
