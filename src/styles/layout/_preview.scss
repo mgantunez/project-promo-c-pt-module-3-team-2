@@ -86,6 +86,8 @@
 .card .card__name {
   font: var(--font-card-title);
   margin-bottom: .2rem;
+  max-width: 150px;
+  text-align: center;
 }
 
 .card .card__project {

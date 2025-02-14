@@ -1,18 +1,18 @@
 .createPage {
     display: flex;
-    flex-wrap: wrap; // Para que se acomode en pantallas pequeñas
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 20px; // Espaciado entre el formulario y la vista previa
+    gap: 20px;
     padding: 20px;
 }
 
 .addForm {
     flex: 1;
-    max-width: 400px; // Ajusta según tu diseño
+    max-width: 400px;
 }
 
 .preview {
     flex: 1;
-    max-width: 500px; // Ajusta según tu diseño
+    max-width: 500px;
 }
