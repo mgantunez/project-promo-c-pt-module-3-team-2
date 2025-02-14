@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function Form({ projectData, setProjectData }) {
 
     const handleFileChange = (event, field) => {
@@ -63,6 +65,22 @@ function Form({ projectData, setProjectData }) {
         </form>
     );
 }
+
+Form.propTypes = {
+    projectData: PropTypes.shape({
+        name: PropTypes.string,
+        slogan: PropTypes.string,
+        technologies: PropTypes.string,
+        repo: PropTypes.string,
+        demo: PropTypes.string,
+        desc: PropTypes.string,
+        autor: PropTypes.string,
+        job: PropTypes.string,
+        image: PropTypes.string,
+        photo: PropTypes.string
+    }).isRequired,
+    setProjectData: PropTypes.func.isRequired,
+};
 
 export default Form;
 

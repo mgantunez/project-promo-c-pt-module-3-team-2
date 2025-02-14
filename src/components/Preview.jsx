@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function Preview({ projectData }) {
     return (
         <section className="preview">
@@ -43,5 +45,20 @@ function Preview({ projectData }) {
         </section>
     );
 }
+
+Preview.propTypes = {
+    projectData: PropTypes.shape({
+        name: PropTypes.string,
+        slogan: PropTypes.string,
+        technologies: PropTypes.string,
+        repo: PropTypes.string,
+        demo: PropTypes.string,
+        desc: PropTypes.string,
+        autor: PropTypes.string,
+        job: PropTypes.string,
+        image: PropTypes.string,
+        photo: PropTypes.string,
+    }).isRequired,
+};
 
 export default Preview;

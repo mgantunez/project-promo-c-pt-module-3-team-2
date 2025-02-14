@@ -12,6 +12,7 @@
     "deploy": "npm run build ; mv dist docs ; git add docs ; git commit -m 'Update GitHub Pages' ; git push"
   },
   "dependencies": {
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router": "^7.1.5",
