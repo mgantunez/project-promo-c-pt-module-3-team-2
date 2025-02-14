@@ -3,16 +3,18 @@ import Hero from "../Hero";
 import Preview from "../Preview";
 import Form from "../Form";
 
-function CreatePage() {
+function CreatePage({ projectData, setProjectData }) {
 
     return (
 
         <main className="main">
-                <Hero/>
+            <Hero />
 
-<Preview/>
+            <div className="createPage">
+                <Preview projectData={projectData} />
+                <Form projectData={projectData} setProjectData={setProjectData} />
 
-<Form/>
+            </div>
 
         </main>
 

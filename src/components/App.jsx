@@ -1,39 +1,67 @@
+import { useState } from 'react';
+
 import '../styles/App.scss';
 
 import Header from './Header';
 import Footer from './Footer';
 import Landing from './Pages/Landing';
-import CreatePage from './Pages/CreatePage'
+import Form from './Form';
+import Preview from './Preview';
+
 import { Route, Routes, Link } from "react-router";
 
 function App() {
-  return (
 
-    <div className="container">
+  const [projectData, setProjectData] = useState({
+    name: "",
+    slogan: "",
+    technologies: "",
+    repo: "",
+    demo: "",
+    desc: "",
+    autor: "",
+    job: "",
+    image: "",
+    photo: ""
+  });
+
+  return (
+    <>    <div className="container">
 
       <Header />
 
       <main>
 
-      
-
         <Routes>
-          <Route index element={<Landing />}></Route>
-          <Route path='create' element={<CreatePage />}></Route>
-          <Route path="*" element={
-            <div className="detail"><p className="detail__title">Error 404 - Página no encontrada</p>
-              <Link to="/" className="detail__returnBtn">
-                Volver a la home
-              </Link>
-            </div>
-          }></Route>
+
+          <Route index element={<Landing />} />
+
+          <Route path="create"
+            element={
+              <div className="createPage">
+                <Preview projectData={projectData} />
+                <Form projectData={projectData} setProjectData={setProjectData} />
+              </div>
+            } />
+
+          <Route path="*"
+            element={
+              <div>
+                <p>Error 404 - Página no encontrada</p>
+                <Link to="/" className="button">
+                  Volver a la home
+                </Link>
+              </div>
+            } />
+
         </Routes>
 
       </main>
 
       <Footer />
 
-    </div>
+    </div >
+    </>
 
   )
 }
