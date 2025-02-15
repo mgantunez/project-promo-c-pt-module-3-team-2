@@ -45,6 +45,10 @@
       flex-direction: column;
       align-items: center;
       margin-bottom: 10px;
+      text-align: center;
+      overflow: hidden;
+      word-wrap: break-word;
+      max-width: 100%;
 
       .card__authorPhoto {
         width: 75px;
@@ -58,13 +62,19 @@
 
       .card__job {
         margin-bottom: 0.2rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
       }
 
       .card__name {
         font: var(--font-card-title);
         margin-bottom: .2rem;
-        max-width: 150px;
         text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+
       }
     }
 
