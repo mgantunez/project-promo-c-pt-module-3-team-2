@@ -9,6 +9,13 @@
     background-size: cover;
   }
 
+  .uploadProjectImage {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    outline: solid 1px pink;
+    object-fit: cover;
+  }
+
   .card {
     margin-inline: 20px;
     transform: translateY(-45px);

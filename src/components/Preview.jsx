@@ -4,7 +4,7 @@ function Preview({ projectData }) {
     return (
         <section className="preview">
             <div className="projectImage">
-                {projectData.photo ? <img src={projectData.photo} alt="Vista previa del proyecto" /> : null}
+                {projectData.photo ? <img className="uploadProjectImage" src={projectData.photo} alt="Vista previa del proyecto" /> : null}
             </div>
 
             <article className="card">
