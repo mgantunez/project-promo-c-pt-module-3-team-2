@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 function Preview({ projectData }) {
+    
     return (
         <section className="preview">
             <div className="projectImage">

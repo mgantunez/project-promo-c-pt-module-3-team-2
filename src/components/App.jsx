@@ -22,7 +22,8 @@ function App() {
     autor: "",
     job: "",
     image: "",
-    photo: ""
+    photo: "",
+    
   });
 
   return (
