@@ -14,7 +14,7 @@ function Preview({ projectData }) {
 
                 <div className="card__author">
                     <div className="card__authorPhoto">
-                        {projectData.image ? <img src={projectData.image} alt="Foto de la autora" /> : null}
+                        {projectData.image ? <img className="card__uploadAuthorPhoto" src={projectData.image} alt="Foto de la autora" /> : null}
                     </div>
                     <p className="card__job">{projectData.job || "Full stack Developer"}</p>
                     <h3 className="card__name">{projectData.autor || "Emmelie Bjôrklund"}</h3>
