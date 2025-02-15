@@ -35,12 +35,19 @@ function ImageEditor({ imageSrc, onSave, isAuthorPhoto }) {
                 image={imageSrc}
                 crop={crop}
                 zoom={zoom}
-                aspect={isAuthorPhoto ? 1 : 16 / 9}
+                aspect={isAuthorPhoto ? 1 : 1} // Siempre cuadrado (1:1)
                 onCropChange={setCrop}
                 onZoomChange={setZoom}
                 onCropComplete={onCropComplete}
-                cropShape={isAuthorPhoto ? "round" : "rect"}
+                cropShape={isAuthorPhoto ? "round" : "rect"} // Redondo para la autora, rectangular para el proyecto
                 showGrid={false}
+                style={{
+                    containerStyle: {
+                        width: "100%",
+                        height: "400px", // Ajusta la altura según sea necesario
+                        position: "relative",
+                    },
+                }}
             />
             <button className="imageEditor__button" onClick={handleSave}>
                 Aceptar encuadre

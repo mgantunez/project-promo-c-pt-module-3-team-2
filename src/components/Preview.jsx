@@ -7,7 +7,9 @@ function Preview({ projectData }) {
 
             <div className="projectImage">
                 {projectData.photo && (
-                    <img className="uploadProjectImage" src={projectData.photo} alt="Vista previa del proyecto" />
+                    <img className="uploadProjectImage"
+                        src={projectData.photo}
+                        alt="Vista previa del proyecto" />
                 )}
             </div>
 
@@ -19,7 +21,9 @@ function Preview({ projectData }) {
                 <div className="card__author">
                     <div className="card__authorPhoto">
                         {projectData.image && (
-                            <img className="card__uploadAuthorPhoto" src={projectData.image} alt="Foto de la autora" />
+                            <img className="card__uploadAuthorPhoto"
+                                src={projectData.image}
+                                alt="Foto de la autora" />
                         )}
                     </div>
 
