@@ -1,16 +1,36 @@
 import PropTypes from "prop-types";
+import ImageEditor from "./ImageEditor";
 
 function Form({ projectData, setProjectData }) {
 
     const handleFileChange = (ev, field) => {
         const file = ev.target.files[0];
-        if (file) {
+        if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onloadend = () => {
-                setProjectData({ ...projectData, [field]: reader.result });
+                setProjectData((prevData) => ({
+                    ...prevData,
+                    [field]: reader.result,
+                }));
             };
             reader.readAsDataURL(file);
+        } else {
+            console.error("El archivo seleccionado no es una imagen válida.");
         }
+    };
+
+    const handleSaveImage = (croppedImg, isAuthorPhoto) => {
+        setProjectData((prevData) => ({
+            ...prevData,
+            [isAuthorPhoto ? "image" : "photo"]: croppedImg,
+        }));
+    };
+
+    const handleDeleteImage = (field) => {
+        setProjectData((prevData) => ({
+            ...prevData,
+            [field]: "",
+        }));
     };
 
     return (
@@ -52,16 +72,49 @@ function Form({ projectData, setProjectData }) {
             <fieldset className="addForm__group--upload">
                 <label className="button">
                     Subir foto del proyecto
-                    <input className="addForm__hidden" type="file" onChange={(ev) => handleFileChange(ev, "photo")} />
+                    <input
+                        className="addForm__hidden"
+                        type="file"
+                        onChange={(ev) => handleFileChange(ev, "photo")} />
                 </label>
+
+                {projectData.photo && (
+                    <button type="button" className="button--delete" onClick={() => handleDeleteImage("photo")}>
+                        Borrar foto del proyecto
+                    </button>
+                )}
 
                 <label className="button">
                     Subir foto de la autora
-                    <input className="addForm__hidden" type="file" onChange={(ev) => handleFileChange(ev, "image")} />
+                    <input
+                        className="addForm__hidden"
+                        type="file"
+                        onChange={(ev) => handleFileChange(ev, "image")} />
                 </label>
+
+                {projectData.image && (
+                    <button type="button" className="button--delete" onClick={() => handleDeleteImage("image")}>
+                        Borrar foto de la autora
+                    </button>
+                )}
 
                 <button className="button--large">Guardar proyecto</button>
             </fieldset>
+
+            {/* Mostrar el editor si hay una imagen subida */}
+            {projectData.photo && (
+                <ImageEditor
+                    imageSrc={projectData.photo}
+                    onSave={(croppedImg) => handleSaveImage(croppedImg, false)}
+                    isAuthorPhoto={false} />
+            )}
+
+            {projectData.image && (
+                <ImageEditor
+                    imageSrc={projectData.image}
+                    onSave={(croppedImg) => handleSaveImage(croppedImg, true)}
+                    isAuthorPhoto={true} />
+            )}
         </form>
     );
 }

@@ -11,10 +11,20 @@
     background-image: url("../images/ebook-example.jpg");
     background-position: top center;
     background-size: cover;
+    overflow: hidden;
   }
 
   .uploadProjectImage {
     object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+
+  .uploadMessage {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
   }
 
   .card {
@@ -85,6 +95,7 @@
         height: 75px;
         border-radius: 50%;
         background-image: url("../images/avatar.webp");
+        overflow: hidden;
         background-position: center;
         background-size: cover;
         margin-bottom: 0.8rem;
