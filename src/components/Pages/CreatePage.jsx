@@ -4,7 +4,7 @@ import Hero from "../Hero";
 import Preview from "../Preview";
 import Form from "../Form";
 
-function CreatePage({ projectData, setProjectData, handleSubmit, error }) {
+function CreatePage({ projectData, setProjectData, handleSubmit, error, projectUrl }) {
 
     return (
 
@@ -13,7 +13,7 @@ function CreatePage({ projectData, setProjectData, handleSubmit, error }) {
 
             <div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error}/>
+                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl}/>
 
             </div>
 

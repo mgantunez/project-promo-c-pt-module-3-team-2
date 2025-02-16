@@ -13,6 +13,7 @@ import { Route, Routes, Link } from "react-router";
 function App() {
 
   const [error,setError]=useState('');
+  const  [projectUrl, setprojectUrl] = useState(''); 
   
 
   const [projectData, setProjectData] = useState({
@@ -43,7 +44,9 @@ function App() {
       //En teoria nos responde el servidor
 
       if(responseData.success === false){
-        setError= (responseData.error);
+        setError(responseData.error);
+      } else {
+        setprojectUrl( responseData.cardURL);
       }
 
       console.log("Servidor respondió:", responseData);
@@ -66,7 +69,7 @@ function App() {
           <Route path="create" 
             element={<div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData}handleSubmit={handleSubmit} error={error}  /> 
+                <Form projectData={projectData} setProjectData={setProjectData}handleSubmit={handleSubmit} error={error} projectUrl={projectUrl}/> 
               </div> 
             } />
 
