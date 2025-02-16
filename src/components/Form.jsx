@@ -1,6 +1,21 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 
 function Form({ projectData, setProjectData }) {
+
+    useEffect(() => {
+        const savedProjectData = localStorage.getItem("projectData");
+        if (savedProjectData) {
+                  setProjectData(JSON.parse(savedProjectData));
+        }
+    }, []);
+
+    console.log("Datos guardados en localStorage:", localStorage.getItem("projectData"));
+ 
+    useEffect(() => {
+         localStorage.setItem("projectData", JSON.stringify(projectData));
+    }, [projectData]);
+ 
 
     const handleFileChange = (ev, field) => {
         const file = ev.target.files[0];
