@@ -81,6 +81,8 @@ Form.propTypes = {
         image: PropTypes.string,
         photo: PropTypes.string
     }).isRequired,
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired,
     setProjectData: PropTypes.func.isRequired,
 };
 
