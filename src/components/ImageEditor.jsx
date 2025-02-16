@@ -14,15 +14,15 @@ function ImageEditor({ imageSrc, onSave, isAuthorPhoto }) {
 
     const handleSave = async () => {
         try {
-            if (!croppedAreaPixels) {
-                console.error("No se ha seleccionado un área para recortar.");
+            if (!croppedAreaPixels || croppedAreaPixels.width === 0 || croppedAreaPixels.height === 0) {
+                console.error("No se ha seleccionado un área válida para recortar.");
                 return;
             }
 
             const croppedImg = await getCroppedImg(imageSrc, croppedAreaPixels);
             if (croppedImg) {
-                console.log("Imagen recortada generada:", croppedImg); // Verifica en la consola
-                onSave(croppedImg); // Llama a la función onSave con la imagen recortada
+                console.log("Imagen recortada generada:", croppedImg);
+                onSave(croppedImg);
             }
         } catch (error) {
             console.error("Error al obtener la imagen recortada:", error);

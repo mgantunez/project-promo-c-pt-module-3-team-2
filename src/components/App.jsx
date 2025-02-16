@@ -1,17 +1,13 @@
 import { useState } from 'react';
-
 import '../styles/App.scss';
-
 import Header from './Header';
 import Footer from './Footer';
 import Landing from './Pages/Landing';
 import Form from './Form';
 import Preview from './Preview';
-
-import { Route, Routes, Link } from "react-router";
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
-
   const [projectData, setProjectData] = useState({
     name: "",
     slogan: "",
@@ -23,20 +19,14 @@ function App() {
     job: "",
     image: "",
     photo: "",
-
   });
 
   return (
-    <>    <div className="container">
-
+    <div className="container">
       <Header />
-
       <main>
-
         <Routes>
-
           <Route index element={<Landing />} />
-
           <Route path="create"
             element={
               <div className="createPage">
@@ -44,7 +34,6 @@ function App() {
                 <Form projectData={projectData} setProjectData={setProjectData} />
               </div>
             } />
-
           <Route path="*"
             element={
               <div>
@@ -54,17 +43,11 @@ function App() {
                 </Link>
               </div>
             } />
-
         </Routes>
-
       </main>
-
       <Footer />
-
-    </div >
-    </>
-
-  )
+    </div>
+  );
 }
 
 export default App;
