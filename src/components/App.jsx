@@ -12,8 +12,7 @@ import { Route, Routes, Link } from "react-router";
 
 function App() {
 
-  //FETCH 
-
+  const [error,setError]=useState('');
   
 
   const [projectData, setProjectData] = useState({
@@ -31,16 +30,25 @@ function App() {
   });
 
     //FETCH 
-  const handleSubmit =() =>{
+  const handleSubmit =(ev) =>{
+    ev.preventDefault(); 
+
     fetch('https://dev.adalab.es/api/projectCard/', {
       method:'POST' ,
-      header:{'content-Type': 'application(json'},
-      body: JSON.stringify(data)
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(projectData),
     })
     .then(response => response.json())
-    .then(responseData=>{
-      
+    .then((responseData) => {
+      //En teoria nos responde el servidor
+
+      if(responseData.success === false){
+        setError= (responseData.error);
+      }
+
+      console.log("Servidor respondió:", responseData);
     } )
+
   }
 
 
@@ -58,8 +66,8 @@ function App() {
           <Route path="create" 
             element={<div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData}handleSubmit={handleSubmit}  /> 
-              </div>
+                <Form projectData={projectData} setProjectData={setProjectData}handleSubmit={handleSubmit} error={error}  /> 
+              </div> 
             } />
 
           <Route path="*"
