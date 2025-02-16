@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function Form({ projectData, setProjectData }) {
+function Form({ projectData, setProjectData, handleSubmit }) {
 
     const handleFileChange = (ev, field) => {
         const file = ev.target.files[0];
@@ -60,7 +60,7 @@ function Form({ projectData, setProjectData }) {
                     <input className="addForm__hidden" type="file" onChange={(ev) => handleFileChange(ev, "image")} />
                 </label>
 
-                <button className="button--large">Guardar proyecto</button>
+                <button className="button--large" onClick={handleSubmit}>Guardar proyecto</button>
             </fieldset>
         </form>
     );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import '../styles/App.scss';
 
@@ -11,6 +11,10 @@ import Preview from './Preview';
 import { Route, Routes, Link } from "react-router";
 
 function App() {
+
+  //FETCH 
+
+  
 
   const [projectData, setProjectData] = useState({
     name: "",
@@ -26,6 +30,20 @@ function App() {
     
   });
 
+    //FETCH 
+  const handleSubmit =() =>{
+    fetch('https://dev.adalab.es/api/projectCard/', {
+      method:'POST' ,
+      header:{'content-Type': 'application(json'},
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(responseData=>{
+      
+    } )
+  }
+
+
   return (
     <>    <div className="container">
 
@@ -37,11 +55,10 @@ function App() {
 
           <Route index element={<Landing />} />
 
-          <Route path="create"
-            element={
-              <div className="createPage">
+          <Route path="create" 
+            element={<div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData} />
+                <Form projectData={projectData} setProjectData={setProjectData}handleSubmit={handleSubmit}  /> 
               </div>
             } />
 
