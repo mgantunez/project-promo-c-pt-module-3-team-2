@@ -66,8 +66,7 @@ function App() {
             />
 
             <Route
-              path="*"
-              element={
+              path="*"element={
                 <div>
                   <p>Error 404 - Página no encontrada</p>
                   <Link to="/" className="button">
