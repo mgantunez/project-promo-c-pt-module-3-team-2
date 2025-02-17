@@ -38,6 +38,7 @@ function App() {
     job: "",
     image: "",
     photo: "",
+    
   });
 
   return (
