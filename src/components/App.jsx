@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 import "../styles/App.scss";
 
@@ -13,20 +13,13 @@ import { Route, Routes, Link } from "react-router";
 // const storedData = localStorage.getItem("projectData");
 // const UserForm = () => { const [name, setName] = useState("")};
 
-// useEffect(() => {
-//   const savedName = localStorage.getItem("username");
-//   if (savedName) {
-//     setName(savedName);
-//   }
-// }, []);
-// // Guardar el nombre en localStorage cuando cambie
-// const handleChange = (e) => {
-//   const newName = e.target.value;
-//   setName(newName);
-//   localStorage.setItem("username", newName);
-// };
-
 function App() {
+
+  const [error, setError] = useState('');
+
+  const [projectUrl, setProjectUrl] = useState('');
+
+
   const [projectData, setProjectData] = useState({
     name: "",
     slogan: "",
@@ -38,8 +31,33 @@ function App() {
     job: "",
     image: "",
     photo: "",
-    
+
   });
+
+  //FETCH 
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+
+    fetch('https://dev.adalab.es/api/projectCard/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(projectData),
+    })
+      .then(response => response.json())
+      .then((responseData) => {
+        //En teoria nos responde el servidor
+
+        if (responseData.success === false) {
+          setError(responseData.error);
+        } else {
+          setProjectUrl(responseData.cardURL);
+        }
+
+        console.log("Servidor respondió:", responseData);
+      })
+
+  }
+
 
   return (
     <>
@@ -49,37 +67,33 @@ function App() {
 
         <main>
           <Routes>
+
             <Route index element={<Landing />} />
 
-            <Route
-              path="create"
-              element={
-                <div className="createPage">
-                  <Preview projectData={projectData} />
-                  <Form
-                    projectData={projectData}
-                    setProjectData={setProjectData}
-                    // storedData={storedData}
-                  />
-                </div>
-              }
-            />
+            <Route path="create"
+              element={<div className="createPage">
+                <Preview projectData={projectData} />
+                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl} />
+              </div>
+              } />
 
-            <Route
-              path="*"element={
+            <Route path="*"
+              element={
                 <div>
                   <p>Error 404 - Página no encontrada</p>
                   <Link to="/" className="button">
                     Volver a la home
                   </Link>
                 </div>
-              }
-            />
+              } />
+
           </Routes>
+
         </main>
 
         <Footer />
-      </div>
+
+      </div >
     </>
   );
 }

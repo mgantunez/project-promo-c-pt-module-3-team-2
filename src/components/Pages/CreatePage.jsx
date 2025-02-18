@@ -4,7 +4,7 @@ import Hero from "../Hero";
 import Preview from "../Preview";
 import Form from "../Form";
 
-function CreatePage({ projectData, setProjectData }) {
+function CreatePage({ projectData, setProjectData, handleSubmit, error, projectUrl }) {
 
     return (
 
@@ -13,7 +13,7 @@ function CreatePage({ projectData, setProjectData }) {
 
             <div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData} />
+                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl}/>
 
             </div>
 
@@ -35,7 +35,8 @@ CreatePage.propTypes = {
         image: PropTypes.string,
         photo: PropTypes.string,
     }).isRequired,
-
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired,
     setProjectData: PropTypes.func.isRequired,
 };
 

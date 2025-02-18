@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-function Form({ projectData, setProjectData }) {
+
+function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) {
     const [errors, setErrors] = useState({});
     
     useEffect(() => {
@@ -14,6 +15,7 @@ function Form({ projectData, setProjectData }) {
     useEffect(() => {
         localStorage.setItem("projectData", JSON.stringify(projectData));
     }, [projectData]);
+
 
     const handleFileChange = (ev, field) => {
         const file = ev.target.files[0];
@@ -46,7 +48,7 @@ function Form({ projectData, setProjectData }) {
         return Object.keys(newErrors).length === 0;
     };
 
-    const handleSubmit = (ev) => {
+    const handleSubmitInput = (ev) => {
         ev.preventDefault();
         if (validateForm()) {
             alert("Proyecto guardado con éxito");
@@ -54,7 +56,7 @@ function Form({ projectData, setProjectData }) {
     };
 
     return (
-        <form className="addForm" onSubmit={handleSubmit}>
+        <form className="addForm" onSubmit={handleSubmitInput}>
             <h2 className="title">Información</h2>
 
             <fieldset className="addForm__group">
@@ -98,7 +100,11 @@ function Form({ projectData, setProjectData }) {
                     <input className="addForm__hidden" type="file" onChange={(ev) => handleFileChange(ev, "image")} />
                 </label>
 
-                <button className="button--large" type="submit">Guardar proyecto</button>
+                <button className="button--large" onClick={handleSubmit}>Guardar proyecto</button>
+                {error ? error :null}
+                {error && error }
+
+                {projectUrl && <a className="projectUrl" href={projectUrl}>¡Clicka aquí para ver tu proyecto molón"!</a>}
             </fieldset>
         </form>
     );
@@ -117,6 +123,9 @@ Form.propTypes = {
         image: PropTypes.string,
         photo: PropTypes.string
     }).isRequired,
+    error: PropTypes.string,
+    handleSubmit: PropTypes.func.isRequired,
+    handleSubmitInput:  PropTypes.func,
     setProjectData: PropTypes.func.isRequired,
 };
 
