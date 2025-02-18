@@ -1,20 +1,24 @@
 import { useState, useEffect } from 'react';
 
-import '../styles/App.scss';
+import "../styles/App.scss";
 
-import Header from './Header';
-import Footer from './Footer';
-import Landing from './Pages/Landing';
-import Form from './Form';
-import Preview from './Preview';
+import Header from "./Header";
+import Footer from "./Footer";
+import Landing from "./Pages/Landing";
+import Form from "./Form";
+import Preview from "./Preview";
 
 import { Route, Routes, Link } from "react-router";
 
+// const storedData = localStorage.getItem("projectData");
+// const UserForm = () => { const [name, setName] = useState("")};
+
 function App() {
 
-  const [error,setError]=useState('');
-  const  [projectUrl, setprojectUrl] = useState(''); 
-  
+  const [error, setError] = useState('');
+
+  const [projectUrl, setProjectUrl] = useState('');
+
 
   const [projectData, setProjectData] = useState({
     name: "",
@@ -27,72 +31,71 @@ function App() {
     job: "",
     image: "",
     photo: "",
-    
+
   });
 
-    //FETCH 
-  const handleSubmit =(ev) =>{
-    ev.preventDefault(); 
+  //FETCH 
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
 
     fetch('https://dev.adalab.es/api/projectCard/', {
-      method:'POST' ,
-      headers:{'Content-Type':'application/json'},
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(projectData),
     })
-    .then(response => response.json())
-    .then((responseData) => {
-      //En teoria nos responde el servidor
+      .then(response => response.json())
+      .then((responseData) => {
+        //En teoria nos responde el servidor
 
-      if(responseData.success === false){
-        setError(responseData.error);
-      } else {
-        setprojectUrl( responseData.cardURL);
-      }
+        if (responseData.success === false) {
+          setError(responseData.error);
+        } else {
+          setProjectUrl(responseData.cardURL);
+        }
 
-      console.log("Servidor respondió:", responseData);
-    } )
+        console.log("Servidor respondió:", responseData);
+      })
 
   }
 
 
   return (
-    <>    <div className="container">
+    <>
+      {" "}
+      <div className="container">
+        <Header />
 
-      <Header />
+        <main>
+          <Routes>
 
-      <main>
+            <Route index element={<Landing />} />
 
-        <Routes>
-
-          <Route index element={<Landing />} />
-
-          <Route path="create" 
-            element={<div className="createPage">
+            <Route path="create"
+              element={<div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData}handleSubmit={handleSubmit} error={error} projectUrl={projectUrl}/> 
-              </div> 
-            } />
-
-          <Route path="*"
-            element={
-              <div>
-                <p>Error 404 - Página no encontrada</p>
-                <Link to="/" className="button">
-                  Volver a la home
-                </Link>
+                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl} />
               </div>
-            } />
+              } />
 
-        </Routes>
+            <Route path="*"
+              element={
+                <div>
+                  <p>Error 404 - Página no encontrada</p>
+                  <Link to="/" className="button">
+                    Volver a la home
+                  </Link>
+                </div>
+              } />
 
-      </main>
+          </Routes>
 
-      <Footer />
+        </main>
 
-    </div >
+        <Footer />
+
+      </div >
     </>
-
-  )
+  );
 }
 
 export default App;
