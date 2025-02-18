@@ -64,7 +64,7 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
                 {error ? error :null}
                 {error && error }
 
-                {projectUrl && <a href={projectUrl}>¡Clicka aquí para ver tu proyecto molón"!</a>}
+                {projectUrl && <a className="projectUrl" href={projectUrl}>¡Clicka aquí para ver tu proyecto molón"!</a>}
             </fieldset>
         </form>
     );
