@@ -10,9 +10,6 @@ import Preview from "./Preview";
 
 import { Route, Routes, Link } from "react-router";
 
-// const storedData = localStorage.getItem("projectData");
-// const UserForm = () => { const [name, setName] = useState("")};
-
 function App() {
 
   const [error, setError] = useState('');
