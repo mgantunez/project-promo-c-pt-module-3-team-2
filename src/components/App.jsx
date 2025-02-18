@@ -1,21 +1,17 @@
-import { useState, useEffect } from 'react';
-
-import "../styles/App.scss";
-
-import Header from "./Header";
-import Footer from "./Footer";
-import Landing from "./Pages/Landing";
-import Form from "./Form";
-import Preview from "./Preview";
-
-import { Route, Routes, Link } from "react-router";
+import { useState } from 'react';
+import '../styles/App.scss';
+import Header from './Header';
+import Footer from './Footer';
+import Landing from './Pages/Landing';
+import Form from './Form';
+import Preview from './Preview';
+import { Route, Routes, Link } from "react-router-dom";
 
 function App() {
 
   const [error, setError] = useState('');
 
   const [projectUrl, setProjectUrl] = useState('');
-
 
   const [projectData, setProjectData] = useState({
     name: "",
@@ -28,7 +24,6 @@ function App() {
     job: "",
     image: "",
     photo: "",
-
   });
 
   //FETCH 

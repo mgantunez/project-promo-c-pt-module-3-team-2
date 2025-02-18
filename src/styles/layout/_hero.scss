@@ -2,19 +2,15 @@
   margin-bottom: 3rem;
 
   @media screen and (min-width: 768px) {
-    .hero {
-      grid-column: span 2;
-    }
+    grid-column: span 2;
   }
-
 
   .title {
     font: var(--font-title-big);
     margin-bottom: 8px;
   }
 
-
-  .hero__text {
+  &__text {
     font: var(--font-text-big);
     text-align: center;
     margin-inline: 4rem;
