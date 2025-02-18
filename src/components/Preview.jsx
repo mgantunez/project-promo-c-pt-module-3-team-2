@@ -2,11 +2,14 @@ import PropTypes from 'prop-types';
 
 
 function Preview({ projectData }) {
-    
     return (
         <section className="preview">
             <div className="projectImage">
-                {projectData.photo ? <img className="uploadProjectImage" src={projectData.photo} alt="Vista previa del proyecto" /> : null}
+                {projectData.photo && (
+                    <img className="uploadProjectImage"
+                        src={projectData.photo}
+                        alt="Vista previa del proyecto" />
+                )}
             </div>
 
             <article className="card">
@@ -16,8 +19,13 @@ function Preview({ projectData }) {
 
                 <div className="card__author">
                     <div className="card__authorPhoto">
-                        {projectData.image ? <img className="card__uploadAuthorPhoto" src={projectData.image} alt="Foto de la autora" /> : null}
+                        {projectData.image && (
+                            <img className="card__uploadAuthorPhoto"
+                                src={projectData.image}
+                                alt="Foto de la autora" />
+                        )}
                     </div>
+
                     <p className="card__job">{projectData.job || "Full stack Developer"}</p>
                     <h3 className="card__name">{projectData.autor || "Emmelie Bjôrklund"}</h3>
                 </div>
