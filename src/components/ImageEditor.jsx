@@ -8,7 +8,7 @@ function ImageEditor({ imageSrc, onSave, isAuthorPhoto }) {
     const [zoom, setZoom] = useState(1);
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-    const onCropComplete = (croppedAreaPixels) => {
+    const onCropComplete = (croppedArea, croppedAreaPixels) => {
         setCroppedAreaPixels(croppedAreaPixels);
     };
 
