@@ -8,11 +8,13 @@ function ImageEditor({ imageSrc, onSave, isAuthorPhoto }) {
     const [zoom, setZoom] = useState(1);
     const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
 
-    const onCropComplete = (croppedArea, croppedAreaPixels) => {
+    const onCropComplete = (croppedAreaPixels) => {
         setCroppedAreaPixels(croppedAreaPixels);
     };
 
-    const handleSave = async () => {
+    const handleSave = async (ev) => {
+        ev.preventDefault();
+
         try {
             if (!croppedAreaPixels || croppedAreaPixels.width === 0 || croppedAreaPixels.height === 0) {
                 console.error("No se ha seleccionado un área válida para recortar.");
