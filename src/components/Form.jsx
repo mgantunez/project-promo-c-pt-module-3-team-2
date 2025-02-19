@@ -7,17 +7,6 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
 
     const [errors, setErrors] = useState({});
 
-    useEffect(() => {
-        const savedProjectData = localStorage.getItem("projectData");
-        if (savedProjectData) {
-            setProjectData(JSON.parse(savedProjectData));
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem("projectData", JSON.stringify(projectData));
-    }, [projectData]);
-
 
     const handleFileChange = (ev, field) => {
         const file = ev.target.files[0];

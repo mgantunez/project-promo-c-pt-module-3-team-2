@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/App.scss';
 import Header from './Header';
 import Footer from './Footer';
@@ -13,7 +13,9 @@ function App() {
 
   const [projectUrl, setProjectUrl] = useState('');
 
-  const [projectData, setProjectData] = useState({
+  const [projectData, setProjectData] = useState(() => {
+    const savedData = localStorage.getItem('projectData');
+    return savedData ? JSON.parse(savedData) : {
     name: "",
     slogan: "",
     technologies: "",
@@ -24,11 +26,24 @@ function App() {
     job: "",
     image: "",
     photo: "",
+    };
   });
+
+  useEffect(() => {
+    if (projectData.name) { // Evitar guardar vacíos innecesarios
+      localStorage.setItem('projectData', JSON.stringify(projectData));
+    }
+  }, [projectData]);
 
   //FETCH 
   const handleSubmit = (ev) => {
     ev.preventDefault();
+
+    const previousProjects = JSON.parse(localStorage.getItem("projects")) || [];
+    const newProject = { ...projectData, dateAdded: new Date().toISOString() };
+    localStorage.setItem("lastProject", JSON.stringify(newProject));
+    const allProjects = [...previousProjects, newProject];
+    localStorage.setItem("projects", JSON.stringify(allProjects));
 
     fetch('https://dev.adalab.es/api/projectCard/', {
       method: 'POST',
@@ -64,7 +79,8 @@ function App() {
 
             <Route path="create"
               element={<div className="createPage">
-                <Preview projectData={projectData} />
+                 {/* Preview should show the last project */}
+                <Preview projectData={JSON.parse(localStorage.getItem('lastProject')) || projectData} />
                 <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl} />
               </div>
               } />
