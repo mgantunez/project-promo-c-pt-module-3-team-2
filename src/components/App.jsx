@@ -30,7 +30,7 @@ function App() {
   });
 
   useEffect(() => {
-    if (projectData.name) { // Evitar guardar vacíos innecesarios
+    if (projectData.name) { 
       localStorage.setItem('projectData', JSON.stringify(projectData));
     }
   }, [projectData]);
@@ -41,7 +41,6 @@ function App() {
 
     const previousProjects = JSON.parse(localStorage.getItem("projects")) || [];
     const newProject = { ...projectData, dateAdded: new Date().toISOString() };
-    localStorage.setItem("lastProject", JSON.stringify(newProject));
     const allProjects = [...previousProjects, newProject];
     localStorage.setItem("projects", JSON.stringify(allProjects));
 
@@ -79,8 +78,7 @@ function App() {
 
             <Route path="create"
               element={<div className="createPage">
-                 {/* Preview should show the last project */}
-                <Preview projectData={JSON.parse(localStorage.getItem('lastProject')) || projectData} />
+                <Preview projectData={projectData} />
                 <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl} />
               </div>
               } />

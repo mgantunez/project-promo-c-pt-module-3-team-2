@@ -104,6 +104,24 @@
 
 }
 
+.button--reset {
+  background-color: transparent;
+  background-image: linear-gradient(to right, #c0b7e8 -2%, #8176af 98%);
+  color: var(--color-white);
+  font: var(--font-button);
+  width: 70px;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 45px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover{
+    transform: scale(1.1);
+  }
+}
 
 .projectUrl {
   color: white;

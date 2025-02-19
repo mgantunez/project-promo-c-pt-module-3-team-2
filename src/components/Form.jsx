@@ -1,11 +1,29 @@
 import PropTypes from "prop-types";
 import ImageEditor from "./ImageEditor";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import cancelar from "../images/cancelar.png"
 
 
 function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) {
 
     const [errors, setErrors] = useState({});
+    
+    const handleReset = () => {
+        setProjectData({
+            name: "",
+            slogan: "",
+            technologies: "",
+            repo: "",
+            demo: "",
+            desc: "",
+            autor: "",
+            job: "",
+            image: "",
+            photo: "",
+        });
+        setErrors({});
+    };
+    
 
 
     const handleFileChange = (ev, field) => {
@@ -148,6 +166,10 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
                     onSave={(croppedImg) => handleSaveImage(croppedImg, true)}
                     isAuthorPhoto={true} />
             )}
+
+            <button type="button" className="button--reset" onClick={handleReset}>
+            Reset 
+            </button>
         </form>
     );
 }
