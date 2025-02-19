@@ -142,7 +142,7 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
                 <button className="button--large" onClick={handleSubmit}>Guardar proyecto</button>
                 {error ? error : null}
 
-                {projectUrl && <a className="projectUrl" href={projectUrl}>¡Clicka aquí para ver tu proyecto molón!</a>}
+                {projectUrl && <a className="projectUrl" href={projectUrl} target="_blank" rel="noopener noreferrer">¡Clicka aquí para ver tu proyecto molón!</a>}
             </fieldset>
 
             {/* Mostrar el editor si hay una imagen subida */}
