@@ -97,7 +97,8 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover {
-    background-color: #ff1a1a;
+    background-color: transparent;
+    background-image: linear-gradient(to right, #f18bad -2%, #e04a56 98%);
     transform: scale(1.1);
 
   }
@@ -119,6 +120,8 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   &:hover{
+    background-color: transparent;
+    background-image: linear-gradient(to right, #f18bad -2%, #e04a56 98%);
     transform: scale(1.1);
   }
 }
