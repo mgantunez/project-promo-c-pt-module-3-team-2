@@ -154,7 +154,7 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
 
                 {projectData.photo && (
                     <button type="button" className="button--delete" onClick={() => handleDeleteImage("photo")}>
-                        Borrar foto del proyecto
+                        <img src={cancelar} alt="Borrar foto del proyecto" className="icon-delete" /> Borrar foto del proyecto
                     </button>
                 )}
 
@@ -168,7 +168,7 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
 
                 {projectData.image && (
                     <button type="button" className="button--delete" onClick={() => handleDeleteImage("image")}>
-                        Borrar foto de la autora
+                        <img src={cancelar} alt="Borrar foto de la autora" className="icon-delete" /> Borrar foto de la autora
                     </button>
                 )}
 
