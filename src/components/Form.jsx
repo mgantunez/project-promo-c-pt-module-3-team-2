@@ -7,7 +7,7 @@ import cancelar from "../images/cancelar.png"
 function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) {
 
     const [errors, setErrors] = useState({});
-    
+
     const handleReset = () => {
         setProjectData({
             name: "",
@@ -23,8 +23,34 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
         });
         setErrors({});
     };
-    
 
+    const traducirErrores = (mensaje) => {
+        if (mensaje.startsWith("Mandatory fields:")) {
+            // Extraer la lista de campos faltantes
+            let campos = mensaje.replace("Mandatory fields: ", "").split(", ");
+
+            // Diccionario de traducción de los campos
+            const traducciones = {
+                "name": "nombre del proyecto",
+                "slogan": "slogan",
+                "technologies": "tecnologías",
+                "repo": "repositorio",
+                "demo": "demo",
+                "desc": "descripción",
+                "autor": "nombre de la autora",
+                "job": "trabajo",
+                "image": "imagen",
+                "photo": "foto",
+            };
+
+            // Reemplazar los nombres en inglés por español
+            let camposTraducidos = campos.map(campo => traducciones[campo] || campo);
+
+            return `Campos obligatorios: ${camposTraducidos.join(", ")}`;
+        }
+
+        return mensaje; // Si no es un error de campos obligatorios, se muestra el mensaje original
+    };
 
     const handleFileChange = (ev, field) => {
         const file = ev.target.files[0];
@@ -147,7 +173,7 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
                 )}
 
                 <button className="button--large" onClick={handleSubmit}>Guardar proyecto</button>
-                {error ? error : null}
+                {error && <p className="error">{traducirErrores(error)}</p>}
 
                 {projectUrl && <a className="projectUrl" href={projectUrl} target="_blank" rel="noopener noreferrer">¡Clicka aquí para ver tu proyecto molón!</a>}
             </fieldset>
@@ -168,7 +194,7 @@ function Form({ projectData, setProjectData, handleSubmit, error, projectUrl }) 
             )}
 
             <button type="button" className="button--reset" onClick={handleReset}>
-            Reset 
+                Reset
             </button>
         </form>
     );

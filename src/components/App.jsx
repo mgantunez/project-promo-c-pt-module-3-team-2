@@ -16,26 +16,27 @@ function App() {
   const [projectData, setProjectData] = useState(() => {
     const savedData = localStorage.getItem('projectData');
     return savedData ? JSON.parse(savedData) : {
-    name: "",
-    slogan: "",
-    technologies: "",
-    repo: "",
-    demo: "",
-    desc: "",
-    autor: "",
-    job: "",
-    image: "",
-    photo: "",
+      name: "",
+      slogan: "",
+      technologies: "",
+      repo: "",
+      demo: "",
+      desc: "",
+      autor: "",
+      job: "",
+      image: "",
+      photo: "",
     };
   });
 
   useEffect(() => {
-    if (projectData.name) { 
+    if (projectData.name) {
       localStorage.setItem('projectData', JSON.stringify(projectData));
     }
   }, [projectData]);
 
   //FETCH 
+
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
@@ -51,7 +52,7 @@ function App() {
     })
       .then(response => response.json())
       .then((responseData) => {
-        //En teoria nos responde el servidor
+
 
         if (responseData.success === false) {
           setError(responseData.error);

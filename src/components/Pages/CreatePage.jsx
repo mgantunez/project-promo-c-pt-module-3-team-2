@@ -13,7 +13,7 @@ function CreatePage({ projectData, setProjectData, handleSubmit, error, projectU
 
             <div className="createPage">
                 <Preview projectData={projectData} />
-                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl}/>
+                <Form projectData={projectData} setProjectData={setProjectData} handleSubmit={handleSubmit} error={error} projectUrl={projectUrl} />
 
             </div>
 
@@ -38,6 +38,7 @@ CreatePage.propTypes = {
     error: PropTypes.string,
     handleSubmit: PropTypes.func.isRequired,
     setProjectData: PropTypes.func.isRequired,
+    projectUrl: PropTypes.string,
 };
 
 export default CreatePage;
